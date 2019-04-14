@@ -38,7 +38,7 @@ class Resturants(models.Model, Timestamps):
     address = models.TextField(max_length=400, blank=True, null=True, verbose_name='Dirección del establecimiento')
     logo_url = models.URLField(verbose_name='Ruta del logo', null=True)
     sitio_web = models.URLField(verbose_name='Sitio web', null=True)
-    horarios = models.ManyToManyField(Horarios)
+    horarios = models.ManyToManyField(Shedules)
 
 
 class Categories(models.Model, Timestamps):
@@ -67,7 +67,7 @@ class Dishes(models.Model, Timestamps):
     description = models.TextField(max_length=500, null=True, default='', verbose_name='Descripción')
     price = models.DecimalField(verbose_name='Precio del platillo', decimal_places=2, max_digits=8, null=False, default=0.0)
     unit_measure = models.ForeignKey(UnitsMeasure, on_delete=models.SET_NULL, null=True)
-    restaurant = models.ForeignKey(Resturantes, on_delete=models.CASCADE, related_name='restaurant')
+    restaurant = models.ForeignKey(Resturants, on_delete=models.CASCADE, related_name='restaurant')
     categories = models.ManyToManyField(Categories)
     flavors = models.ManyToManyField(Flavors)
 
